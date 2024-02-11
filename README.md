@@ -1,6 +1,7 @@
 # E-Commerce API
 
 #### Technology Stack
+
 > - Node.js/Express.js
 > - Mongoose
 > - Bcrypt
@@ -8,12 +9,21 @@
 
 ### Features
 
-#### User Module
+#### User Module Endpoints
 
-#### Product Module
+> - Register User - POST /users
+> - Login - POST /users/login
+> - Get User - GET /users/profile
+> - Update User - PUT /users/:userId/update
+> - Reset Password - PUT /users/:userId/reset-password
+> - Get All Users (Admin) - GET /users
+> - Get User Info (Admin) - GET /users/:userId
+> - Update User Role (Admin) - PUT /users/:userId/update-role
 
-#### Cart Module
+#### Product Module Endpoints
 
-#### Order Module
+#### Cart Module Endpoints
 
-#### Review Module
+#### Order Module Endpoints
+
+#### Review Module Endpoints
