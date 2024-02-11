@@ -16,7 +16,7 @@ app.use(cors());
 
 
 mongoose.connect(
-    "mongodb+srv://aal-admin:<password>@cluster-ecommerce-api.yalfo15.mongodb.net/e-commerce-api?retryWrites=true&w=majority",
+    "",
     {
         useNewUrlParser: true,
         useUnifiedTopology: true
