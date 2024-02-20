@@ -67,7 +67,7 @@ const verifyNotAdmin = (req, res, next) => {
 
 module.exports = {
   createAccessToken,
-  verifyToken,
   verifyAdmin,
   verifyNotAdmin,
+  verifyToken,
 };
