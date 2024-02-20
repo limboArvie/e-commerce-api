@@ -25,6 +25,7 @@ const createUser = async (req, res) => {
       email: req.body.email,
       mobileNumber: req.body.mobileNumber,
       password: bcrypt.hashSync(req.body.password, 10),
+      role: req.body.isSeller ? "Seller" : "Customer"
     });
 
     const user = await newUser.save();
@@ -181,6 +182,28 @@ const updateUserAsAdmin = async (req, res) => {
   }
 };
 
+const updateUserAsSeller = async (req, res) => {
+  try {
+    const { userId } = req.params;
+
+    const userToUpdate = await User.findByIdAndUpdate(
+      userId,
+      { isApprovedSeller: true, role: "Seller" },
+      { new: true }
+    );
+
+    if (!userToUpdate) {
+      res.status(404).send({ error: "User to update to seller role not found." });
+    }
+
+    res.status(200).send({ message: "User updated to seller role successfully." });
+  } catch (error) {
+    return res.status(500).send({
+      error: "Internal Server Error: Error occurred while updating user to seller role.",
+    });
+  }
+};
+
 const updateUserPassword = async (req, res) => {
   try {
     const { id } = req.user;
@@ -253,6 +276,7 @@ module.exports = {
   loginUser,
   updateUser,
   updateUserAsAdmin,
+  updateUserAsSeller,
   updateUserPassword,
   updateUserRole,
 };

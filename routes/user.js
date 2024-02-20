@@ -31,6 +31,13 @@ router.put(
   userController.updateUserAsAdmin
 );
 
+router.put(
+  "/:userId/approve-seller",
+  verifyToken,
+  verifyAdmin,
+  userController.updateUserAsSeller
+);
+
 router.get("/profile", verifyToken, userController.getUserProfile);
 
 router.get("/", verifyToken, verifyAdmin, userController.getAllUsers);

@@ -20,6 +20,7 @@
 > - Get User Info (Admin) - `GET /users/:userId`
 > - Update User Role (Admin) - `PUT /users/:userId/update-role`
 > - Update User As Admin (Admin) - `PUT /users/:userId/update-admin`
+> - Approve Seller (Admin) - `PUT /users/:userId/approve-seller`
 
 #### Product Module Endpoints
 

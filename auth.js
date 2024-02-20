@@ -7,6 +7,7 @@ const createAccessToken = (user) => {
     email: user.email,
     isAdmin: user.isAdmin,
     role: user.role,
+    isApprovedSeller: user.isApprovedSeller,
   };
 
   return jwt.sign(data, secret, {});
@@ -65,9 +66,22 @@ const verifyNotAdmin = (req, res, next) => {
   next();
 };
 
+const verifySeller = (req, res, next) => {
+  const { role, isApprovedSeller } = req.user;
+
+  if (role !== "Seller" || !isApprovedSeller) {
+    return res
+      .status(403)
+      .send({ error: "Forbidden: User not allowed to access this resource." });
+  }
+
+  next();
+}
+
 module.exports = {
   createAccessToken,
   verifyAdmin,
   verifyNotAdmin,
+  verifySeller,
   verifyToken,
 };
