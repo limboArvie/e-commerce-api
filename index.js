@@ -16,10 +16,13 @@ app.use(
 );
 app.use(cors());
 
-mongoose.connect("", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+mongoose.connect(
+  "mongodb+srv://aal-admin:Fulcrum2024@cluster-ecommerce-api.yalfo15.mongodb.net/e-commerce-api?retryWrites=true&w=majority",
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  }
+);
 
 mongoose.connection.once("open", () => {
   console.log("Connected to MongoDB Database");

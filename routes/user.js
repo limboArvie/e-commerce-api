@@ -9,8 +9,6 @@ router.post("/", userController.createUser);
 
 router.post("/login", userController.loginUser);
 
-router.get("/profile", verifyToken, userController.getUserProfile);
-
 router.put("/:userId/update", verifyToken, userController.updateUser);
 
 router.put(
@@ -19,15 +17,24 @@ router.put(
   userController.updateUserPassword
 );
 
-router.get("/", verifyToken, verifyAdmin, userController.getAllUsers);
-
-router.get("/:userId", verifyToken, verifyAdmin, userController.getUserInfo);
-
 router.put(
   "/:userId/update-role",
   verifyToken,
   verifyAdmin,
   userController.updateUserRole
 );
+
+router.put(
+  "/:userId/update-admin",
+  verifyToken,
+  verifyAdmin,
+  userController.updateUserAsAdmin
+);
+
+router.get("/profile", verifyToken, userController.getUserProfile);
+
+router.get("/", verifyToken, verifyAdmin, userController.getAllUsers);
+
+router.get("/:userId", verifyToken, verifyAdmin, userController.getUserInfo);
 
 module.exports = router;

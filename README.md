@@ -11,14 +11,15 @@
 
 #### User Module Endpoints
 
-> - Register User - POST /users
-> - Login - POST /users/login
-> - Get User - GET /users/profile
-> - Update User - PUT /users/:userId/update
-> - Reset Password - PUT /users/:userId/reset-password
-> - Get All Users (Admin) - GET /users
-> - Get User Info (Admin) - GET /users/:userId
-> - Update User Role (Admin) - PUT /users/:userId/update-role
+> - Register User - `POST /users`
+> - Login - `POST /users/login`
+> - Get User - `GET /users/profile`
+> - Update User - `PUT /users/:userId/update`
+> - Reset Password - `PUT /users/:userId/reset-password`
+> - Get All Users (Admin) - `GET /users`
+> - Get User Info (Admin) - `GET /users/:userId`
+> - Update User Role (Admin) - `PUT /users/:userId/update-role`
+> - Update User As Admin (Admin) - `PUT /users/:userId/update-admin`
 
 #### Product Module Endpoints
 
