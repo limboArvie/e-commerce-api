@@ -11,6 +11,7 @@
 
 #### User Module Endpoints
 
+> - Check If Email Already Exists - `POST /users/check-email`
 > - Register User - `POST /users`
 > - Login - `POST /users/login`
 > - Get User - `GET /users/profile`

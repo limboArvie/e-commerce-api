@@ -5,6 +5,8 @@ const { verifyToken, verifyAdmin } = require("../auth");
 
 const router = express.Router();
 
+router.post("/check-email", userController.checkUserEmailExisting);
+
 router.post("/", userController.createUser);
 
 router.post("/login", userController.loginUser);

@@ -3,6 +3,25 @@ const auth = require("../auth");
 
 const User = require("../models/User");
 
+const checkUserEmailExisting = async (req, res) => {
+  try {
+    const { email } = req.body;
+
+    if (!email.includes("@")) {
+      return res.status(400).send({ error: "Email is not valid." });
+    }
+
+    const userFound = await User.find({ email });
+
+    return res.status(200).send({ emailFound: userFound?.length > 0 });
+  } catch (error) {
+    return res.status(500).send({
+      error:
+        "Internal Server Error: Error occurred while checking if user email already exists.",
+    });
+  }
+};
+
 const createUser = async (req, res) => {
   try {
     if (!req.body.email.includes("@")) {
@@ -25,7 +44,7 @@ const createUser = async (req, res) => {
       email: req.body.email,
       mobileNumber: req.body.mobileNumber,
       password: bcrypt.hashSync(req.body.password, 10),
-      role: req.body.isSeller ? "Seller" : "Customer"
+      role: req.body.isSeller ? "Seller" : "Customer",
     });
 
     const user = await newUser.save();
@@ -193,13 +212,18 @@ const updateUserAsSeller = async (req, res) => {
     );
 
     if (!userToUpdate) {
-      res.status(404).send({ error: "User to update to seller role not found." });
+      res
+        .status(404)
+        .send({ error: "User to update to seller role not found." });
     }
 
-    res.status(200).send({ message: "User updated to seller role successfully." });
+    res
+      .status(200)
+      .send({ message: "User updated to seller role successfully." });
   } catch (error) {
     return res.status(500).send({
-      error: "Internal Server Error: Error occurred while updating user to seller role.",
+      error:
+        "Internal Server Error: Error occurred while updating user to seller role.",
     });
   }
 };
@@ -269,6 +293,7 @@ const updateUserRole = async (req, res) => {
 };
 
 module.exports = {
+  checkUserEmailExisting,
   createUser,
   getAllUsers,
   getUserInfo,
